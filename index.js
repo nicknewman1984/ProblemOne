@@ -87,6 +87,15 @@ function mutateArray(a) {
       arr2.push(flatten(a[i]));
     }
   }
+
+  // sort alphabetically by last name and then first name
+  arr2.sort((a, b)=> {
+    if (a.last_name === b.last_name){
+      return a.first_name < b.first_name ? -1 : 1
+    } else {
+      return a.last_name < b.last_name ? -1 : 1
+    }
+  })
   
   return arr2;
 }
