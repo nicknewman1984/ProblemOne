@@ -56,7 +56,30 @@ var arr = [
 ];
 
 function mutateArray(a) {
-    return a;
+  let arr2 = [];
+
+  const flatten = (ob) => {
+    let result = {};
+    for (const i in ob) {
+        if ((typeof ob[i]) === 'object' && !Array.isArray(ob[i])) { //check for object to flatten
+            const temp = flatten(ob[i]);
+            for (const j in temp) {
+                result[j] = temp[j];
+            }
+        }
+        else {
+            result[i] = ob[i];
+        }
+    }
+    return result;
+  };
+
+  // iterate through array
+  for (const i in a) {
+    arr2.push(flatten(a[i]));
+  }
+  
+  return arr2;
 }
 
 $(document).ready(function() {
