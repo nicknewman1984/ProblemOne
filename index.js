@@ -63,9 +63,16 @@ function mutateArray(a) {
     for (const i in ob) {
         if ((typeof ob[i]) === 'object' && !Array.isArray(ob[i])) { //check for object to flatten
             const temp = flatten(ob[i]);
-            for (const j in temp) {
+
+            for (let j in temp) { //changed from const to let to allow key to be changed
+              if(j == "some_array") {
+                let arr3 = temp[j];
+                j = "some_total";
+                result[j] = arr3.reduce((a, b) => a + b, 0); //add up values of the array
+              } else {
                 result[j] = temp[j];
-            }
+            }   
+          }
         }
         else {
             result[i] = ob[i];
