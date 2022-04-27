@@ -83,7 +83,9 @@ function mutateArray(a) {
 
   // iterate through array
   for (const i in a) {
-    arr2.push(flatten(a[i]));
+    if(a[i].guest_type == "guest") {
+      arr2.push(flatten(a[i]));
+    }
   }
   
   return arr2;
